@@ -5,7 +5,8 @@ const wallet_1 = require("../model/wallet");
 class WalletService {
     constructor() {
         this.getAll = async () => {
-            let sql = `select * from Wallet`;
+            let sql = `select id_wallet, name, moneyTotal, username from wallet w
+                         join user u on w.idUser = u.id_user`;
             let wallet = await this.walletRepository.query(sql);
             return wallet;
         };
