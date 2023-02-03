@@ -8,7 +8,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const app = (0, express_1.default)();
 const port = 3000;
 const cors_1 = __importDefault(require("cors"));
-const data_source_1 = require("./src/data-source");
+const data_source_1 = require("./BE/src/data-source");
 data_source_1.AppDataSource.initialize().then(() => {
     console.log('Data connection');
 });

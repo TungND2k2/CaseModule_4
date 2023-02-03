@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 const app = express();
 const port = 3000;
 import cors from 'cors'
-import {AppDataSource} from "./src/data-source";
+import {AppDataSource} from "./BE/src/data-source";
 
 
 AppDataSource.initialize().then(() => {
