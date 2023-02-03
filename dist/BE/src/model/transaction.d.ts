@@ -8,4 +8,5 @@ export declare class Transaction {
     idWallet: number;
     money: number;
     idCategory: number;
+    Time: Date;
 }

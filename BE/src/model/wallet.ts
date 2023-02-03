@@ -7,7 +7,7 @@ export class Wallet {
     @Column({ nullable: true,})
     name: string
     @Column({ nullable: true,})
-    money: number
+    moneyTotal: number
     @Column({ nullable: true,})
     idUser: number
 

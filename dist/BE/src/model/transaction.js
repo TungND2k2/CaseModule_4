@@ -41,6 +41,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: true, }),
     __metadata("design:type", Number)
 ], Transaction.prototype, "idCategory", void 0);
+__decorate([
+    (0, typeorm_1.Column)('time', { name: 'elapsed_time' }),
+    __metadata("design:type", Date)
+], Transaction.prototype, "Time", void 0);
 Transaction = __decorate([
     (0, typeorm_1.Entity)()
 ], Transaction);

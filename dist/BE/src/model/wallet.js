@@ -24,7 +24,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ nullable: true, }),
     __metadata("design:type", Number)
-], Wallet.prototype, "money", void 0);
+], Wallet.prototype, "moneyTotal", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true, }),
     __metadata("design:type", Number)

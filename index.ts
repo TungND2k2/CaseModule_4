@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 import cors from 'cors'
 import {AppDataSource} from "./BE/src/data-source";
+import router from "./BE/src/router/wallet.router";
 
 
 AppDataSource.initialize().then(() => {
@@ -14,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('./public'))
-
+app.use('', router);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

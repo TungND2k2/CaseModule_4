@@ -1,6 +1,6 @@
 export declare class Wallet {
     id_wallet: number;
     name: string;
-    money: number;
+    moneyTotal: number;
     idUser: number;
 }
