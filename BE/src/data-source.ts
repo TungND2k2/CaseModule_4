@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
 
     username: "root",
 
-    password: "2002",
+    password: "12345",
 
     database: "money_app",
     entities: ["dist/src/model/*.js"],
