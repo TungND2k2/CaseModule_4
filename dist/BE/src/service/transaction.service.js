@@ -4,6 +4,9 @@ const data_source_1 = require("../data-source");
 const transaction_1 = require("../model/transaction");
 class TransactionService {
     constructor() {
+        this.savePay = async (pay) => {
+            return this.transactionRepository.save(pay);
+        };
         this.getAll = async () => {
             let pay = await this.transactionRepository.find();
             return pay;

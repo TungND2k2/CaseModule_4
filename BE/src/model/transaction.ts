@@ -19,6 +19,6 @@ export class Transaction {
     money: number
     @Column({ nullable: true,})
     idCategory: number
-    @Column('time', {name: 'elapsed_time'})
+    @Column('time', {name: 'elapsed_time',nullable:true})
     Time: Date;
 }

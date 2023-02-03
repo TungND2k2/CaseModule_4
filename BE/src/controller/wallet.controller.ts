@@ -9,10 +9,9 @@ class WalletController   {
     }
      showWallet = async (req:Request, res:Response) => {
         let wallet = await this.WalletService.getAll()
+         console.log(wallet)
          if (wallet) {
-             res.status(200).json({
-                 message: " success",
-             });
+             res.status(200).json(wallet)
 
          }
      }

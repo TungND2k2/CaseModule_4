@@ -9,8 +9,8 @@
 <body>
 
 
-<div id="body">
-  <section class="vh-100">
+<div >
+  <section id="body" class="vh-100">
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6 text-black">
@@ -22,7 +22,7 @@
 
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-            <form style="width: 23rem;">
+            <div style="width: 23rem;">
 
               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
 
@@ -41,9 +41,9 @@
               </div>
 
               <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
-              <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
+              <button onclick="showWallet()">Here</button>
 
-            </form>
+            </div>
 
           </div>
 
@@ -57,19 +57,6 @@
   </section>
 </div>
 </body>
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyAXjO34SZh9DDmUYYDYBxO1maKpVJIzHXM",
-    authDomain: "blog-256ad.firebaseapp.com",
-    projectId: "blog-256ad",
-    storageBucket: "blog-256ad.appspot.com",
-    messagingSenderId: "407014107404",
-    appId: "1:407014107404:web:5c6d4131b1aceba31f4129",
-    measurementId: "G-Q95R0NBXF0"
-  };
-  firebase.initializeApp(firebaseConfig);
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="index.js"></script>
+<script src="../JS/index.js"></script>
 </html>

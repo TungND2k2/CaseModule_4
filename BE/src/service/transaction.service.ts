@@ -6,7 +6,9 @@ class TransactionService {
     constructor() {
         this.transactionRepository=AppDataSource.getRepository(Transaction)
     }
-
+    savePay = async (pay) => {
+        return this.transactionRepository.save(pay);
+    }
     getAll = async () => {
         let pay = await this.transactionRepository.find()
         return pay;

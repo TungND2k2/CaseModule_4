@@ -8,10 +8,9 @@ class WalletController {
     constructor() {
         this.showWallet = async (req, res) => {
             let wallet = await this.WalletService.getAll();
+            console.log(wallet);
             if (wallet) {
-                res.status(200).json({
-                    message: " success",
-                });
+                res.status(200).json(wallet);
             }
         };
         this.WalletService = wallet_service_1.default;
