@@ -3,31 +3,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkAuth = void 0;
+exports.auth = exports.SECRET = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const checkAuth = async (req, res, next) => {
-    try {
-        let tokenUser = req.cookies.token;
-        if (tokenUser) {
-            jsonwebtoken_1.default.verify(tokenUser, "123456789", (err, decoded) => {
+exports.SECRET = '12345678';
+const auth = (req, res, next) => {
+    console.log(req.headers);
+    let authorization = req.headers.authorization;
+    console.log();
+    if (authorization) {
+        let accessToken = req.headers.authorization.split(' ')[1];
+        if (accessToken) {
+            jsonwebtoken_1.default.verify(accessToken, exports.SECRET, (err, payload) => {
                 if (err) {
-                    console.log(err);
-                    return res.render("login");
+                    res.status(403).json({
+                        err: err.message,
+                        message: 'you are anonymous'
+                    });
                 }
                 else {
-                    req.decoded = decoded;
-                    return next();
+                    req.decoded = payload;
+                    next();
                 }
             });
         }
         else {
-            return res.redirect("/auth/login");
+            res.status(403).json({ message: 'you are anonymous' });
         }
     }
-    catch (err) {
-        console.log(err);
-        return res.redirect("/auth/login");
+    else {
+        res.status(403).json({ message: 'you are anonymous' });
     }
 };
-exports.checkAuth = checkAuth;
+exports.auth = auth;
 //# sourceMappingURL=auth.js.map

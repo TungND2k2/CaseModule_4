@@ -1,11 +1,17 @@
+import {AppDataSource} from "../data-source";
+import {Categories} from "../model/categories";
 
-import { Schema, model } from "mongoose";
+class CategoryService {
+    private categoryRepository
 
-const categorySchema = new Schema({
-    name: String,
-    english: String
-})
+    constructor() {
+        this.categoryRepository = AppDataSource.getRepository(Categories)
+    }
 
-const Category = model('Category', categorySchema);
+    getAll = async () => {
+        let sql = `select * from category`
+        return await this.categoryRepository.query(sql)
+    }
+}
 
-export {Category};
+export default new CategoryService()

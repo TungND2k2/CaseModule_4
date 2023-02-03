@@ -1,40 +1,26 @@
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import {Category} from ".././service/categories.service"
-import { User } from ".././service/user.service";
+import {Request, Response} from "express";
+import AuthService from "../service/auth.service"
+class AuthController {
+    private AuthService
 
-export class AuthController {
+    constructor() {
+        this.AuthService = AuthService;
+    }
 
-    static async login(req, res) {
-        try {
-            const user = await User.findOne({ email: req.body.email });
-            if (user) {
-                const comparePass = await bcrypt.compare(req.body.password, user.password);
-                if (!comparePass) {
-                    req.flash("error", "Sai mật khẩu!!!");
-                }
-                let payload = {
-                    user_id: user["id"],
-                    name: user["name"],
-                    username: user["email"],
-                    role: user["role"]
-                }
-                const token = jwt.sign(payload, '123456789', {
-                    expiresIn: 30 * 60 * 1000,
+    register = async (req, res) => {
+        let user = await this.AuthService.register(req.body)
+        res.status(201).json(user)
+    }
 
-                });
-
-                let options = {
-                    maxAge: 1000 * 60 * 30, // would expire after 30 minutes
-                    httpOnly: true, // The cookie only accessible by the web server
-                }
-            } else {
-                req.flash("error", "Sai tài khoản hoặc mật khẩu");
-            }
-        } catch (err) {
-            console.log(err);
+    login = async (req: Request, res: Response) => {
+        let user = {
+            username : req.body.username,
+            password : req.body.password
         }
+       
+        let response = await this.AuthService.checkUser(user)
+        console.log(response)
+        res.status(200).json(response)
     }
 }
-
-    
+export default new AuthController()

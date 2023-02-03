@@ -1,1 +1,2 @@
-export declare const checkAuth: (req: any, res: any, next: any) => Promise<any>;
+export declare const SECRET = "12345678";
+export declare const auth: (req: any, res: any, next: any) => void;

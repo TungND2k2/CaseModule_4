@@ -1,28 +1,29 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken'
+export const SECRET = '12345678'
 
-export const checkAuth = async (req, res, next) => {
-    try {
-        let tokenUser = req.cookies.token;
-        if (tokenUser) {
-            jwt.verify(tokenUser, "123456789", (err, decoded) => {
+export const auth = (req, res, next) => {
+    console.log(req.headers)
+    let authorization = req.headers.authorization
+    console.log()
+    if (authorization) {
+        let accessToken = req.headers.authorization.split(' ')[1]
+        if (accessToken) {
+            jwt.verify(accessToken, SECRET, (err, payload) => {
                 if (err) {
-                    console.log(err); 
-                    return res.render("login");
+                    res.status(403).json({
+                        err: err.message,
+                        message: 'you are anonymous'
+                    })
                 } else {
-                    // console.log(decoded);
-                    req.decoded = decoded;
-                    return next();
+                    req.decoded = payload
+                    next()
                 }
-            });
-        } else {
-
-            return res.redirect("/auth/login");
-
+            })
+        }else {
+            res.status(403).json({message: 'you are anonymous'})
         }
-
-    } catch (err) {
-        console.log(err);
-        return res.redirect("/auth/login");
-
+    } else {
+        res.status(403).json({message: 'you are anonymous'})
     }
+
 }

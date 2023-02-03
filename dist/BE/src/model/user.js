@@ -23,7 +23,7 @@ __decorate([
 ], User.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)()

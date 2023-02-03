@@ -1,11 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Category = void 0;
-const mongoose_1 = require("mongoose");
-const categorySchema = new mongoose_1.Schema({
-    name: String,
-    english: String
-});
-const Category = (0, mongoose_1.model)('Category', categorySchema);
-exports.Category = Category;
+const data_source_1 = require("../data-source");
+const categories_1 = require("../model/categories");
+class CategoryService {
+    constructor() {
+        this.getAll = async () => {
+            let sql = `select * from category`;
+            return await this.categoryRepository.query(sql);
+        };
+        this.categoryRepository = data_source_1.AppDataSource.getRepository(categories_1.Categories);
+    }
+}
+exports.default = new CategoryService();
 //# sourceMappingURL=categories.service.js.map
