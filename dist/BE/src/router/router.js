@@ -7,5 +7,5 @@ exports.WalletRouter = void 0;
 const express_1 = require("express");
 const wallet_controller_1 = __importDefault(require("../controller/wallet.controller"));
 exports.WalletRouter = (0, express_1.Router)();
-exports.WalletRouter.get('/', wallet_controller_1.default.showWallet);
+exports.WalletRouter.get('/wallets', wallet_controller_1.default.showWallet);
 //# sourceMappingURL=router.js.map

@@ -18,5 +18,5 @@ export const AppDataSource = new DataSource({
 
     database: "money_app",
     entities: ["dist/BE/src/model/*.js"],
-    synchronize: true,
+    synchronize: false,
 })

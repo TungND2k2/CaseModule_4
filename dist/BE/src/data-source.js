@@ -11,6 +11,6 @@ exports.AppDataSource = new typeorm_1.DataSource({
     password: "2002",
     database: "money_app",
     entities: ["dist/BE/src/model/*.js"],
-    synchronize: true,
+    synchronize: false,
 });
 //# sourceMappingURL=data-source.js.map

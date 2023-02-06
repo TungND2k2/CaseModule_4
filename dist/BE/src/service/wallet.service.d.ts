@@ -1,7 +1,10 @@
 declare class WalletService {
     private walletRepository;
     constructor();
-    getAll: () => Promise<any>;
+    getAll: (id: any) => Promise<any>;
+    save: (wallet: any) => Promise<any>;
+    private update;
+    private delete;
     findById: (id: any) => Promise<any>;
 }
 declare const _default: WalletService;

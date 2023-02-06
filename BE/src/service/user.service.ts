@@ -1,45 +1,20 @@
-import mongoose from "mongoose";
-const { Schema, model } = mongoose;
-
-const userSchema = new Schema({
-    name: {
-        type: String,
-
-        required: [true, "Name can't be blank"]
-    },
-
-    email: {
-        type: String,
-        required: [true, "Email can't be blank"]
-    },
-
-    password: {
-        type: String,
-        required: [true, "Password can't be blank"]
-    },
-
-    phoneNumber: {
-        type: String,
-        required: [true, "Phone Number can't be blank"]
-    },
-
-
-    role: {
-        type: String,
-        default: "user",
-        enum: ["user", "admin"]
-    },
-
-    cart: {
-        type: Schema.Types.ObjectId,
-        ref: "Cart"
+import {User} from "../model/user";
+import {AppDataSource} from "../data-source";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken"
+class UserService {
+    private userRepository;
+    constructor() {
+        this.userRepository = AppDataSource.getRepository(User);
     }
 
+    editProfile = async (id, newProfile) => {
+        let user = await this.userRepository.findOneBy({idUser: id});
+        if (!user) {
+            return null;
+        }
+        return this.userRepository.update({idUser: id}, newProfile);
+    }
+}
 
-})
-
-
-const User = model('User', userSchema);
-
-
-export { User };
+export default new UserService()

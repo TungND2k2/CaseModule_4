@@ -7,5 +7,5 @@ export class User {
     @Column()
     username: string
     @Column()
-    password: number
+    password: string
 }
