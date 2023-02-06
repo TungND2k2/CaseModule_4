@@ -11,6 +11,10 @@ class UserService {
             }
             return this.userRepository.update({ idUser: id }, newProfile);
         };
+        this.findById = async (id) => {
+            let user = await this.userRepository.findOneBy({ id_user: id });
+            return user;
+        };
         this.userRepository = data_source_1.AppDataSource.getRepository(user_1.User);
     }
 }

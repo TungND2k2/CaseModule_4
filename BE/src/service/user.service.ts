@@ -15,6 +15,10 @@ class UserService {
         }
         return this.userRepository.update({idUser: id}, newProfile);
     }
+    findById = async (id) => {
+        let user = await this.userRepository.findOneBy({id_user: id});
+        return user;
+    }
 }
 
 export default new UserService()

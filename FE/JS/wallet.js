@@ -50,6 +50,10 @@ function loginForm(){
     </div>
 `)
 }
+function logout(){
+    localStorage.clear()
+    loginForm()
+}
 function sigin(){
     let username = $('#username').val();
     let password = $('#password').val();
@@ -71,7 +75,10 @@ function sigin(){
                     alert('Wrong username or password')
                 }else {
                     alert("Login successfully")
+                    localStorage.setItem('token',response.token)
+                    localStorage.setItem('idUser',response.id_user)
                     showWallet(response.id_user)
+
                 }
             }
         })
@@ -122,6 +129,7 @@ function register(){
     }
 
 function showWallet(id) {
+    console.log(localStorage.token)
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/wallet/home/"+id,
@@ -196,7 +204,7 @@ function walletTranProceeds(id) {
                <option value="spending">Spending</option>
                
 </select>
-               <td><select class="form-select" multiple aria-label="multiple select example" style="width: 200px;height: 210px" name="" id="categories">
+               <select class="form-select" multiple aria-label="multiple select example" style="width: 200px;height: 210px" name="" id="categories">
                <option value="${wallet.categories[0].id_category}">${wallet.categories[0].name}</option>
                <option value="${wallet.categories[1].id_category}">${wallet.categories[1].name}</option>
                <option value="${wallet.categories[2].id_category}">${wallet.categories[2].name}</option>
@@ -205,7 +213,6 @@ function walletTranProceeds(id) {
                <option value="${wallet.categories[5].id_category}">${wallet.categories[5].name}</option>
                <option value="${wallet.categories[6].id_category}">${wallet.categories[6].name}</option>
 </select>
-               </td>
                <td><button class="btn btn-outline-dark" style="margin-left: 420px" onclick="addTransactions('${wallet.wallet.id_wallet}')">Save<i class="fa-solid fa-bookmark"></i></button></td>
 </tr> 
 </table>
@@ -416,6 +423,7 @@ function saveAddWallet() {
 
         name: name,
         moneyTotal: moneyTotal,
+        idUser:localStorage.idUser
     }
     $.ajax({
         type: "POST",
@@ -426,7 +434,7 @@ function saveAddWallet() {
         data: JSON.stringify(wallet),
         success: () => {
             alert("created successfully")
-            showWallet()
+            showWallet(localStorage.idUser)
         }
     })
 }
@@ -468,14 +476,13 @@ function saveEditWallet(id) {
         },
         data: JSON.stringify(wallet),
         success: () => {
-            showWallet()
+            showWallet(localStorage.idUser)
 
         }
     })
 }
 
 function deleteWallet(id) {
-    console.log(1)
     $.ajax({
         type: "DELETE",
         url: "http://localhost:3000/wallet/delete/" + id,
@@ -483,7 +490,7 @@ function deleteWallet(id) {
             'Content-Type': 'application/json'
         },
         success: () => {
-            showWallet()
+            showWallet(localStorage.idUser)
         }
     })
 }
