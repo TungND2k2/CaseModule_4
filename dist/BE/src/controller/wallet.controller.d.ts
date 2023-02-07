@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 declare class WalletController {
     private walletService;
     private categoryService;
+    private translationsService;
     constructor();
     showWallet: (req: Request, res: Response) => Promise<void>;
     create: (req: Request, res: Response) => Promise<void>;

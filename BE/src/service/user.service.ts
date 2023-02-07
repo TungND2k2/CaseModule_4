@@ -9,11 +9,11 @@ class UserService {
     }
 
     editProfile = async (id, newProfile) => {
-        let user = await this.userRepository.findOneBy({idUser: id});
+        let user = await this.userRepository.findOneBy({id_user: id});
         if (!user) {
             return null;
         }
-        return this.userRepository.update({idUser: id}, newProfile);
+        return this.userRepository.update({id_user: id}, newProfile);
     }
     findById = async (id) => {
         let user = await this.userRepository.findOneBy({id_user: id});

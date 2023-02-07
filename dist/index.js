@@ -12,6 +12,7 @@ const data_source_1 = require("./BE/src/data-source");
 const auth_router_1 = __importDefault(require("./BE/src/router/auth.router"));
 const transaction_router_1 = __importDefault(require("./BE/src/router/transaction.router"));
 const wallet_router_1 = require("./BE/src/router/wallet.router");
+const user_router_1 = __importDefault(require("./BE/src/router/user.router"));
 data_source_1.AppDataSource.initialize().then(() => {
     console.log('Data connection');
 });
@@ -22,6 +23,7 @@ app.use(express_1.default.static('./public'));
 app.use('', wallet_router_1.WalletRouter);
 app.use('', auth_router_1.default);
 app.use('', transaction_router_1.default);
+app.use('', user_router_1.default);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

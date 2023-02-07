@@ -1,14 +1,17 @@
 import {Request, Response} from "express";
 import walletService from "../service/wallet.service";
 import CategoriesService from "../service/categories.service";
+import TransactionService from "../service/transaction.service";
 
 class WalletController {
     private walletService;
     private categoryService;
+    private translationsService;
 
     constructor() {
         this.walletService = walletService
         this.categoryService = CategoriesService
+        this.translationsService=TransactionService
     }
      showWallet = async (req:Request, res:Response) => {
         try {
@@ -56,6 +59,7 @@ class WalletController {
      findOneWallet = async (req:Request,res:Response) => {
         let id=req.params.id;
         let categories=await this.categoryService.getAll()
+
         let wallet = await this.walletService.findById(id);
         if (wallet){
             res.status(200).json({wallet,categories})
